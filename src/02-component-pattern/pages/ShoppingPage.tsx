@@ -1,4 +1,4 @@
-import { ProductButtons, ProductCard, ProductImg, ProductTitle } from '../components/ProductCard';
+import { ProductButtons, ProductCard, ProductImg, ProductTitle } from '../components/Product';
 
 const product = {
   id: '1',
@@ -22,10 +22,16 @@ export const ShoppingPage = () => {
         <ProductCard product={product}>
 
           <ProductImg />
-          <ProductTitle title={product.title} />
-          <ProductButtons increasedBy={function (value: number): void {
-            throw new Error('Function not implemented.');
-          }} counter={0} />
+          <ProductTitle />
+          <ProductButtons />
+
+        </ProductCard>
+
+        <ProductCard product={product}>
+
+          <ProductImg />
+          <ProductTitle title='pepe' />
+          <ProductButtons />
 
         </ProductCard>
 
