@@ -1,19 +1,47 @@
 import { ProductButtons, ProductCard, ProductImg, ProductTitle } from '../components/Product';
+import { useShoppingCart } from '../hooks/useShoppingCart';
+
+import { products } from '../data/products';
 
 import '../styles/product.css'
 
-const product = {
-  id: '1',
-  title: 'Coffee mug',
-  img: './coffee-mug.png'
-}
-
 
 export const ShoppingPage = () => {
+
+
+  const { onChange, shoppingCart } = useShoppingCart()
+
+
   return (
     <div>
       <h1>ShoppingPage</h1>
       <hr />
+
+      <div className='shopping-cart'>
+
+        {
+          Object.values(shoppingCart).map(product => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              onChange={onChange}
+              value={product.count}
+              className='bg-dark text-white'
+              style={{
+                width: '120px'
+              }}
+            >
+
+              <ProductImg className='custom-image' />
+              <ProductButtons
+                className='custom-buttons'
+              />
+
+            </ProductCard>
+          ))
+        }
+
+      </div>
 
       <div style={{
         display: 'flex',
@@ -21,39 +49,29 @@ export const ShoppingPage = () => {
         flexWrap: 'wrap'
       }}>
 
-        <ProductCard
-          product={product}
-          className='bg-dark text-white'
-        >
 
-          <ProductImg className='custom-image' />
-          <ProductTitle />
-          <ProductButtons className='custom-buttons' />
+        {
+          products.map(product => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              className='bg-dark text-white'
+              value={shoppingCart[product.id]?.count || 0}
+              onChange={onChange}
+            >
 
-        </ProductCard>
+              <ProductImg className='custom-image' />
+              <ProductTitle />
+              <ProductButtons
+                className='custom-buttons'
+              />
 
-        <ProductCard product={product}>
+            </ProductCard>
+          ))
+        }
 
-          <ProductImg />
-          <ProductTitle title='pepe' />
-          <ProductButtons />
-
-        </ProductCard>
-
-        <ProductCard product={product} style={{ backgroundColor: 'red', color: 'white' }}>
-
-          <ProductImg />
-          <ProductTitle />
-          <ProductButtons style={{
-            display: 'flex',
-            justifyContent: 'center'
-          }} />
-
-        </ProductCard>
 
       </div>
-
-
     </div>
   )
 }
