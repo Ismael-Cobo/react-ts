@@ -1,6 +1,5 @@
-import { ProductCard } from "../components"
-import { ProductModel } from "../model"
-import { useState } from 'react';
+import { ProductModel } from "../model";
+import { CardButtons, CardImg, CardTitle, ProductCard } from "../Products/components";
 
 const product1: ProductModel = {
   id: '1',
@@ -14,9 +13,10 @@ const product2: ProductModel = {
 }
 
 
+let products = [product1, product2]
 
 export const ShoppingPage = () => {
-  const [products, setProducts] = useState<ProductModel[]>([product1, product2])
+
   return (
     <div>
       <h1>ShoppingPage</h1>
@@ -30,7 +30,11 @@ export const ShoppingPage = () => {
 
         {
           products.map(p => (
-            <ProductCard {...p} key={p.id} />
+            <ProductCard product={p} key={p.id}>
+              <CardImg />
+              <CardTitle />
+              <CardButtons />
+            </ProductCard>
           ))
         }
       </div>
