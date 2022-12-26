@@ -1,6 +1,6 @@
 import { ProductModel } from "../model";
 import { CardButtons, CardImg, CardTitle, ProductCard } from "../Products/components";
-
+import '../Products/styles/styles.css';
 const product1: ProductModel = {
   id: '1',
   title: 'Coffee mug',
@@ -25,15 +25,16 @@ export const ShoppingPage = () => {
       <div style={{
         display: 'flex',
         flexDirection: 'row',
-        flexWrap: 'wrap'
-      }}>
+        flexWrap: 'wrap',
+        gap: '1rem'
+      }} className='bg-dark'>
 
         {
           products.map(p => (
-            <ProductCard product={p} key={p.id}>
-              <CardImg />
-              <CardTitle />
-              <CardButtons />
+            <ProductCard product={p} key={p.id} className='bg-dark text-white'>
+              <CardImg className="custom-image" />
+              <CardTitle className="text-white" style={{ padding: '10px', backgroundColor: 'rebeccapurple' }} />
+              <CardButtons className="custom-buttons" />
             </ProductCard>
           ))
         }
